@@ -38,5 +38,21 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    def reverse_list_iterative(self, node, prev):
+
+        # look at elements two at a time
+        while node.next:
+            
+            # store a pointer to the current next node
+            second = node.next
+
+            # reasssign current node's "next" pointer to the next element after this pair (third element)
+            self.set_next(node, second.next)
+
+            # reassign the second node's "next" pointer to point to the current element
+            self.set_next(second, node)
+
+            # update the head pointer for the list
+            self.head = second
+
+        return self.head
