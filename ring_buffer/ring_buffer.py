@@ -84,7 +84,28 @@ class RingBufferAsCircularLinkedList:
     def get(self):
         return self.storage.get_array_representation()
 
+class RingBufferAsArray:
+    def __init__(self, capacity):
+        self.capacity = capacity        
+        self.storage = [None for i in range(capacity)]
+        self.entry_index = 0
+
+    def __str__(self):
+        return " -> ".join(self.storage)
+        
+    def append(self, item):
+        # store item in next available spot
+        self.storage[self.entry_index] = item
+
+        # update pointer for next available spot
+        self.entry_index = (self.entry_index + 1) % self.capacity
+
+    def get(self):
+        # return values that are not None
+        return [value for value in self.storage if value]
+
 class RingBuffer(RingBufferAsCircularLinkedList):
+# class RingBuffer(RingBufferAsArray):
     def __init__(self, capacity):
         super().__init__(capacity)
 
