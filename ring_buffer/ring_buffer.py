@@ -9,16 +9,19 @@ class Node:
 class CircularLinkedList:
     def __init__(self, length):
 
-        self.newest = Node()
-        self.oldest = self.newest
+        # temporarily keep track of new nodes
+        newest = Node()
+        
+        # store a pointer to access one of the nodes in the linked list
+        self.entry = newest
 
         # initialize all nodes to empty
         for i in range(length - 1):
-            self.newest.next = Node()
-            self.newest = self.newest.next
+            newest.next = Node()
+            newest = newest.next
 
         # link newest node and oldest node together
-        self.newest.next = self.oldest
+        newest.next = self.entry
 
     def __str__(self):
 
@@ -40,10 +43,16 @@ class RingBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
         
-        self.buffer = CircularLinkedList(5)
-        self.newest = self.buffer
+        self.storage = CircularLinkedList(5)
         
-        self.oldest = None
+        # create a dictionary to store pointers to nodes
+        self.lookup = dict()
+
+        for i in range(capacity):
+            self.newest.next = Node()
+            self.newest = self.newest.next
+
+
 
     def append(self, item):
         pass
