@@ -41,21 +41,26 @@ class CircularLinkedList:
 
 class RingBuffer:
     def __init__(self, capacity):
-        self.capacity = capacity
-        
+        self.capacity = capacity        
         self.storage = CircularLinkedList(5)
         
+        self.oldestItemToRemove = None
+        self.nextAvailableSpot = self.storage.entry
+
         # create a dictionary to store pointers to nodes
         self.lookup = dict()
 
-        for i in range(capacity):
-            self.newest.next = Node()
-            self.newest = self.newest.next
+        # current_node = self.storage.entry
 
-
+        # for i in range(capacity):
+        #     current_node = current_node.next
+        #     self.newest = self.newest.next
 
     def append(self, item):
-        pass
+        if self.oldestItemToRemove:
+            pass
+        else:
+            self.lookup[]
 
     def get(self):
         pass
