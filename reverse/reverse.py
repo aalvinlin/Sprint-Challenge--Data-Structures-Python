@@ -59,25 +59,37 @@ class LinkedList:
 
         print("not empty")
 
+        current = node
+
         # look at elements two at a time
-        while node.next_node:
+        # while current.next_node:
+        while current.next_node:
 
-            print("current node value:", node.get_value())
+            print("current node value:", current.get_value(), "next:", current.next_node)
             
-            # store a pointer to the next node
-            second = node.next_node
+            new_head = current.next_node
 
-            # reasssign current node's "next" pointer to the next element after this pair (third element)
-            node.set_next(second.next_node)
+            current.next = current.next_node.next_node
 
-            # reassign the second node's "next" pointer to point to the current element
-            second.set_next(node)
+            new_head.next_node = self.head
 
-            # update the head pointer for the list
-            self.head = second
+            self.head = new_head
 
-            # update node to point at the next node in the list for the next iteration
-            node = node.next_node
+
+            # # store a pointer to the next node
+            # second = node.next_node
+
+            # # reasssign current node's "next" pointer to the next element after this pair (third element)
+            # node.set_next(second.next_node)
+
+            # # reassign the second node's "next" pointer to point to the current element
+            # second.set_next(node)
+
+            # # update the head pointer for the list
+            # self.head = second
+
+            # # update node to point at the next node in the list for the next iteration
+            # node = node.next_node
 
             print("current list:", self)
 
