@@ -53,7 +53,7 @@ class CircularLinkedList:
 
         # add first element if it is not None
         if current_node.value:
-            array_representation.append(str(current_node.value))
+            array_representation.append(current_node.value)
 
         while current_node.next is not self.print_start:
 
@@ -62,7 +62,7 @@ class CircularLinkedList:
             # do not display empty nodes
             if current_node.value:
 
-                array_representation.append(str(current_node.value))
+                array_representation.append(current_node.value)
 
         return array_representation
 
