@@ -72,7 +72,7 @@ class LinkedList:
             # update head pointer
             self.head = new_head
 
-        return self.head
+        return
 
 test = LinkedList()
 test.add_to_head(1)
