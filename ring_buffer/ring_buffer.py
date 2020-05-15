@@ -69,7 +69,7 @@ class CircularLinkedList:
 class RingBufferAsCircularLinkedList:
     def __init__(self, capacity):
         self.capacity = capacity        
-        self.storage = CircularLinkedList(5)
+        self.storage = CircularLinkedList(capacity)
 
     def __str__(self):
         return str(self.storage)
@@ -104,8 +104,8 @@ class RingBufferAsArray:
         # return values that are not None
         return [value for value in self.storage if value]
 
-class RingBuffer(RingBufferAsCircularLinkedList):
-# class RingBuffer(RingBufferAsArray):
+# class RingBuffer(RingBufferAsCircularLinkedList):
+class RingBuffer(RingBufferAsArray):
     def __init__(self, capacity):
         super().__init__(capacity)
 

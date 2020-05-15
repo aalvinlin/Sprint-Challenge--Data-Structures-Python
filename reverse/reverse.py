@@ -51,6 +51,10 @@ class LinkedList:
 
         return string_representation
 
+    def reverse_list(self, current, prev):
+        # self.reverse_list_iterative(current, prev)
+        self.reverse_list_recursive(current, prev)
+
     def reverse_list_iterative(self, current, prev):
 
         # return an empty list or an one-element list unchanged
@@ -74,12 +78,16 @@ class LinkedList:
 
         return
 
-    def reverse_list(self, current, prev):
+    def reverse_list_recursive(self, current, prev):
 
-        if not current:
-            return []
+        if not current.next_node:
+            self.head = current
+            return current
         else:
-            return [self.reverse_list(current.next_node, None), current.value]
+
+            reversed_sublist = reverse_list(current.next_node, current)
+
+            return [self.reverse_list(current.next_node, None), current]
 
         pass
 
@@ -92,5 +100,5 @@ test.add_to_head(5)
 
 reverse = test.reverse_list(test.head, None)
 
-print(test)
-print(reverse)
+# print(test)
+# print(reverse)
