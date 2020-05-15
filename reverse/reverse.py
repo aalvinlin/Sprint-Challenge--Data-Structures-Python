@@ -57,23 +57,31 @@ class LinkedList:
         if not self.head or not self.head.next_node:
             return self.head
 
-        print("not empty")
+        print("not empty", self)
 
         current = node
 
         # look at elements two at a time
         # while current.next_node:
-        while current.next_node:
+        while current.next_node and current.next_node.get_value():
 
-            print("current node value:", current.get_value(), "next:", current.next_node)
+            print("current node value:", current.get_value(), "next:", current.next_node.get_value())
             
             new_head = current.next_node
 
+            print(self)
+
             current.next = current.next_node.next_node
+
+            print(self)
 
             new_head.next_node = self.head
 
+            print(self)
+
             self.head = new_head
+
+            print(self)
 
 
             # # store a pointer to the next node
@@ -94,3 +102,15 @@ class LinkedList:
             print("current list:", self)
 
         return self.head
+
+test = LinkedList()
+test.add_to_head(1)
+test.add_to_head(2)
+test.add_to_head(3)
+test.add_to_head(4)
+test.add_to_head(5)
+
+reverse = test.reverse_list(test.head, None)
+
+print(test)
+print(reverse)
