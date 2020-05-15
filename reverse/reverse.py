@@ -51,55 +51,26 @@ class LinkedList:
 
         return string_representation
 
-    def reverse_list(self, node, prev):
+    def reverse_list(self, current, prev):
 
         # return an empty list or an one-element list unchanged
         if not self.head or not self.head.next_node:
             return self.head
 
-        print("not empty", self)
-
-        current = node
-
-        # look at elements two at a time
-        # while current.next_node:
-        while current.next_node and current.next_node.get_value():
-
-            print("current node value:", current.get_value(), "next:", current.next_node.get_value())
+        # look at elements two at a time. Move the pointers for "current" and the next node around.
+        while current.next_node:
             
+            # the node after current will beocme the new head. Store in a variable
             new_head = current.next_node
 
-            print(self)
+            # current's next node will now become the node that is currently 2 elements down
+            current.set_next(current.next_node.next_node)
 
-            current.next = current.next_node.next_node
+            # link the node that will become the new head to the current head
+            new_head.set_next(self.head)
 
-            print(self)
-
-            new_head.next_node = self.head
-
-            print(self)
-
+            # update head pointer
             self.head = new_head
-
-            print(self)
-
-
-            # # store a pointer to the next node
-            # second = node.next_node
-
-            # # reasssign current node's "next" pointer to the next element after this pair (third element)
-            # node.set_next(second.next_node)
-
-            # # reassign the second node's "next" pointer to point to the current element
-            # second.set_next(node)
-
-            # # update the head pointer for the list
-            # self.head = second
-
-            # # update node to point at the next node in the list for the next iteration
-            # node = node.next_node
-
-            print("current list:", self)
 
         return self.head
 
