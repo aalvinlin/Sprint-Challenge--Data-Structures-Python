@@ -44,26 +44,15 @@ class RingBuffer:
         self.capacity = capacity        
         self.storage = CircularLinkedList(5)
         
-        self.oldestItemToRemove = None
-        self.nextAvailableSpot = self.storage.entry
-
-        # create a dictionary to store pointers to nodes
-        self.lookup = dict()
-
-        # current_node = self.storage.entry
-
-        # for i in range(capacity):
-        #     current_node = current_node.next
-        #     self.newest = self.newest.next
-
     def append(self, item):
-        if self.oldestItemToRemove:
-            pass
-        else:
-            self.lookup[]
+        # store item in next available spot
+        self.storage.entry.value = item
+
+        # update pointer for next available spot
+        self.storage.entry = self.storage.entry.next
 
     def get(self):
-        pass
+        return
 
 ring = CircularLinkedList(5)
 print(ring)
