@@ -80,13 +80,9 @@ start_time = time.time()
 # If all five letter pairs match (or there aren't enough letters in the first or last name),
 # then there is a high chance that the name is a duplicate. Only then will a conclusive search be carried out.
 
-letter_pairs_lookup = [
-    [0 for value in range(26 ** 2)],
-    [0 for value in range(26 ** 2)],
-    [0 for value in range(26 ** 2)],
-    [0 for value in range(26 ** 2)],
-    [0 for value in range(26 ** 2)]
-]
+letter_pairs_to_check = 20
+
+letter_pairs_lookup = [[0 for value in range(26 ** 2)] for value in range(letter_pairs_to_check)]
 
 duplicates = []
 
@@ -98,8 +94,8 @@ for name in names_1:
     first_name = split[0]
     last_name = split[1]
 
-    # process up to 5 letter pairs, or up to the total number of letters in either first or last name
-    for nth_letter_pair in range(min(5, len(first_name), len(last_name))):
+    # process up to the specified number of letter pairs, or up to the total number of letters in either first or last name
+    for nth_letter_pair in range(min(letter_pairs_to_check, len(first_name), len(last_name))):
 
         first_letter = first_name[0]
         last_letter = last_name[0]
@@ -124,9 +120,13 @@ for name in names_2:
 
     # keep track for matches for letter pairs
     letter_pair_matches = 0
+
+    # check up to the max length of the name
+    max_letters_that_can_be_checked = min(letter_pairs_to_check, len(first_name), len(last_name))
     
-    # process up to 5 letter pairs, or up to the total number of letters in either first or last name
-    for nth_letter_pair in range(min(5, len(first_name), len(last_name))):
+    # process up to the specified number of letter pairs, or up to the total number of letters in either first or last name
+    # for nth_letter_pair in range(min(letter_pairs_to_check, len(first_name), len(last_name))):
+    for nth_letter_pair in range(max_letters_that_can_be_checked):
 
         first_letter = first_name[nth_letter_pair]
         last_letter = last_name[nth_letter_pair]
@@ -140,11 +140,13 @@ for name in names_2:
             letter_pair_matches += 1
 
     # if all pairs matched, carry out a definitive search
-    if letter_pair_matches == 5:
+    if letter_pair_matches == max_letters_that_can_be_checked:
         possible_matches += 1
-        # print("possible match!", possible_matches)
+        # print("possible match!", first_name, last_name)
 
 print("possible matches", possible_matches)
+
+print("doesn't work...number of false positives increases with more letter pairs checked, because pairs are checked independently of one another")
 
 # print time and duplicates
 end_time = time.time()
