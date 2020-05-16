@@ -128,8 +128,8 @@ for name in names_2:
     # process up to 5 letter pairs, or up to the total number of letters in either first or last name
     for nth_letter_pair in range(min(5, len(first_name), len(last_name))):
 
-        first_letter = first_name[0]
-        last_letter = last_name[0]
+        first_letter = first_name[nth_letter_pair]
+        last_letter = last_name[nth_letter_pair]
 
         # turn the first and last initial combination into an integer from 0-675
         # ex: AV would be 21, JR would be 251
@@ -138,13 +138,13 @@ for name in names_2:
         # see if the current combination matches a combination stored in the other list
         if letter_pairs_lookup[nth_letter_pair][index] > 0:
             letter_pair_matches += 1
-    
-    # print(letter_pair_matches)
 
     # if all pairs matched, carry out a definitive search
     if letter_pair_matches == 5:
         possible_matches += 1
-        # print("possible match!")
+        # print("possible match!", possible_matches)
+
+print("possible matches", possible_matches)
 
 # print time and duplicates
 end_time = time.time()
@@ -155,11 +155,11 @@ print (f"runtime: {end_time - start_time} seconds")
 
 ### test with built-in functions ###
 
-start_time = time.time()
+# start_time = time.time()
 
-duplicates = set(names_1).intersection(set(names_2))
+# duplicates = set(names_1).intersection(set(names_2))
 
-end_time = time.time()
+# end_time = time.time()
+# # print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 # print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+# print (f"runtime: {end_time - start_time} seconds")
